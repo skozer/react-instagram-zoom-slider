@@ -1,0 +1,84 @@
+{
+  "name": "react-instagram-zoom-slider",
+  "version": "1.0.0",
+  "description": "A slider with pinch to zoom capabilities inspired by Instagram",
+  "author": "Sean Kozer",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skozer/react-instagram-zoom-slider.git"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "jsnext:main": "dist/index.es.js",
+  "engines": {
+    "node": ">=8",
+    "npm": ">=5"
+  },
+  "scripts": {
+    "test": "cross-env CI=1 react-scripts test --env=jsdom",
+    "test:watch": "react-scripts test --env=jsdom",
+    "build": "rollup -c",
+    "start": "rollup -c -w",
+    "prepare": "yarn run build",
+    "predeploy": "cd example && yarn install && yarn run build",
+    "deploy": "gh-pages -d example/build"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "styled-components": ">= 5"
+  },
+  "dependencies": {
+    "react-spring": "^8.0.27",
+    "react-use-gesture": "^7.0.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-react": "^7.8.3",
+    "@rollup/plugin-commonjs": "^11.0.2",
+    "@rollup/plugin-node-resolve": "^7.1.1",
+    "@rollup/plugin-url": "^4.0.2",
+    "@svgr/rollup": "^5.1.0",
+    "babel-eslint": "^10.0.3",
+    "cross-env": "^7.0.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-promise": "^4.0.0",
+    "eslint-plugin-react": "^7.10.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "gh-pages": "^2.2.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-scripts": "^1.1.4",
+    "rollup": "^1.31.1",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-peer-deps-external": "^2.2.0",
+    "rollup-plugin-postcss": "^2.0.6",
+    "styled-components": "^5.0.1"
+  },
+  "files": [
+    "dist"
+  ],
+  "bugs": {
+    "url": "https://github.com/skozer/react-instagram-zoom-slider/issues"
+  },
+  "homepage": "https://github.com/skozer/react-instagram-zoom-slider",
+  "keywords": [
+    "instagram",
+    "zoom",
+    "pinch",
+    "slider",
+    "carousel",
+    "react",
+    "animated",
+    "react-component"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "react-instagram-zoom-slider-example",
+  "homepage": "https://skozer.github.io/react-instagram-zoom-slider",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "prop-types": "^15.6.2",
+    "react": "link:../node_modules/react",
+    "react-dom": "^16.4.1",
+    "react-instagram-zoom-slider": "link:..",
+    "react-scripts": "^1.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
