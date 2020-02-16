@@ -10,7 +10,7 @@ body {
 }
 
 .example p {
-  margin: 0 20px;
+  margin: 20px;
   font-size: 14px;
   line-height: 1.4;
 }
