@@ -21,7 +21,7 @@
     "build": "rollup -c",
     "start": "rollup -c -w",
     "prepare": "yarn run build",
-    "predeploy": "cd example && yarn install && yarn run build",
+    "predeploy": "cd example && yarn install && rimraf dist && yarn run build",
     "deploy": "gh-pages -d example/dist",
     "semantic-release": "semantic-release"
   },
