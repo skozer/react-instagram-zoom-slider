@@ -5,7 +5,7 @@
 
 ## Example
 
-[![react-instagram-zoom-slider demo](https://i.imgur.com/I8bg0cV.gif)](https://skozer.github.io/react-instagram-zoom-slider/)
+[![react-instagram-zoom-slider demo](https://i.imgur.com/cpz7qNY.gif)](https://skozer.github.io/react-instagram-zoom-slider/)
 
 [**👉 View this interactive demo here**](https://skozer.github.io/react-instagram-zoom-slider/)
 
