@@ -3,6 +3,12 @@
 [![NPM](https://img.shields.io/npm/v/react-instagram-zoom-slider?style=flat-square)](https://www.npmjs.com/package/react-instagram-zoom-slider)
 [![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-instagram-zoom-slider?style=flat-square)](https://bundlephobia.com/result?p=react-instagram-zoom-slider)
 
+## Example
+
+[![react-instagram-zoom-slider demo](https://i.imgur.com/I8bg0cV.gif)](https://skozer.github.io/react-instagram-zoom-slider/)
+
+[**👉 View this interactive demo here**](https://skozer.github.io/react-instagram-zoom-slider/)
+
 ## Install
 
 ```bash
