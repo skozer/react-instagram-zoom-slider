@@ -5,16 +5,20 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "prop-types": "^15.6.2",
-    "react": "link:../node_modules/react",
-    "react-dom": "^16.4.1",
-    "react-instagram-zoom-slider": "link:..",
-    "react-scripts": "^1.1.4"
+    "react-app-polyfill": "^1.0.6"
+  },
+  "alias": {
+    "react": "../node_modules/react",
+    "react-dom": "../node_modules/react-dom/profiling",
+    "scheduler/tracing": "../node_modules/scheduler/tracing-profiling",
+    "react-instagram-zoom-slider": "../"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "parcel": "^1.12.4"
   }
 }

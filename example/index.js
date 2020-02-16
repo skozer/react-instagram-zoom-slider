@@ -1,5 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
+import ReactDOM from 'react-dom'
 import ZoomSlider from 'react-instagram-zoom-slider'
+import './index.css'
 
 const IMG_URLS = [
   'https://source.unsplash.com/mMa_cpvxeBU/1600x1600',
@@ -12,7 +15,7 @@ const IMG_URLS = [
 
 const slides = IMG_URLS.map(src => <img src={src} alt="Pascale Dress - Floral" draggable="false" />)
 
-export default function App() {
+function Example() {
   return (
     <div className="App">
       <p>
@@ -29,3 +32,5 @@ export default function App() {
     </div>
   )
 }
+
+ReactDOM.render(<Example />, document.getElementById('root'))
