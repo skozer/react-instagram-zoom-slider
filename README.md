@@ -1,6 +1,7 @@
 **react-instagram-zoom-slider** is a slider component with pinch to zoom capabilities inspired by Instagram.
 
-[![NPM](https://img.shields.io/npm/v/react-instagram-zoom-slider.svg)](https://www.npmjs.com/package/react-instagram-zoom-slider)
+[![NPM](https://img.shields.io/npm/v/react-instagram-zoom-slider?style=flat-square)](https://www.npmjs.com/package/react-instagram-zoom-slider)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-instagram-zoom-slider?style=flat-square)](https://bundlephobia.com/result?p=react-instagram-zoom-slider)
 
 ## Install
 
