@@ -1,6 +1,6 @@
 {
   "name": "react-instagram-zoom-slider",
-  "version": "0.0.0-development",
+  "version": "1.0.1",
   "description": "A slider with pinch to zoom capabilities inspired by Instagram",
   "author": "Sean Kozer",
   "license": "MIT",
