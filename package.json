@@ -42,6 +42,8 @@
     "@rollup/plugin-commonjs": "^11.0.2",
     "@rollup/plugin-node-resolve": "^7.1.1",
     "@rollup/plugin-url": "^4.0.2",
+    "@semantic-release/changelog": "^5.0.0",
+    "@semantic-release/git": "^9.0.0",
     "@svgr/rollup": "^5.1.0",
     "babel-eslint": "^10.0.3",
     "cross-env": "^7.0.0",
@@ -63,8 +65,8 @@
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-postcss": "^2.0.6",
-    "styled-components": "^5.0.1",
-    "semantic-release": "^17.0.3"
+    "semantic-release": "^17.0.3",
+    "styled-components": "^5.0.1"
   },
   "files": [
     "dist"

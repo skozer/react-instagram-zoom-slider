@@ -17,7 +17,7 @@ const slides = IMG_URLS.map(src => <img src={src} alt="Pascale Dress - Floral" d
 
 function Example() {
   return (
-    <div className="App">
+    <div className="example">
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. At eveniet dolorem, iure dolor
         velit sequi ad laborum facilis assumenda maxime obcaecati aspernatur eaque nulla, culpa,

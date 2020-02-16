@@ -9,6 +9,12 @@ body {
   overflow-x: hidden;
 }
 
+.example p {
+  margin: 0 20px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
 img {
   width: 100%;
   height: auto;
