@@ -1,12 +1,12 @@
 {
   "name": "react-instagram-zoom-slider",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "description": "A slider with pinch to zoom capabilities inspired by Instagram",
   "author": "Sean Kozer",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/skozer/react-instagram-zoom-slider.git"
+    "url": "https://github.com/skozer/react-instagram-zoom-slider.git"
   },
   "main": "dist/index.js",
   "module": "dist/index.es.js",
@@ -22,7 +22,8 @@
     "start": "rollup -c -w",
     "prepare": "yarn run build",
     "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/dist"
+    "deploy": "gh-pages -d example/dist",
+    "semantic-release": "semantic-release"
   },
   "peerDependencies": {
     "prop-types": "^15.7.2",
@@ -62,7 +63,8 @@
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-postcss": "^2.0.6",
-    "styled-components": "^5.0.1"
+    "styled-components": "^5.0.1",
+    "semantic-release": "^17.0.3"
   },
   "files": [
     "dist"
