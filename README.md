@@ -12,7 +12,7 @@
 ## Install
 
 ```bash
-yarn add react-instagram-zoom-slider
+yarn add react-instagram-zoom-slider react-spring react-use-gesture styled-components
 ```
 
 ## Usage
