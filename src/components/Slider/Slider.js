@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react'
+import PropTypes from 'prop-types'
 import { useSpring, animated } from 'react-spring'
 import { useDrag } from 'react-use-gesture'
 import Slide from '../Slide'
@@ -114,12 +115,14 @@ export default function Slider({ slides }) {
       />
 
       <AnimatedSlider
+        // eslint-disable-next-line react/jsx-props-no-spreading
         {...bind()}
         style={{
-          transform: x.interpolate(x => `translateX(${x}px`),
+          transform: x.interpolate(slideX => `translateX(${slideX}px`),
         }}
       >
         {slides.map((slide, idx) => (
+          // eslint-disable-next-line react/no-array-index-key
           <Slide onScale={onScale} key={idx}>
             {slide}
           </Slide>
@@ -128,11 +131,15 @@ export default function Slider({ slides }) {
 
       {slides.length > 1 && (
         <Dots
-          slides={slides}
+          totalSlides={slides.length}
           currentSlide={currentSlide}
           centerDots={slides.length < 6 ? slides.length : undefined}
         />
       )}
     </div>
   )
+}
+
+Slider.propTypes = {
+  slides: PropTypes.arrayOf(PropTypes.node).isRequired,
 }

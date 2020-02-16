@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useCallback } from 'react'
+import PropTypes from 'prop-types'
 import { useSpring, animated, interpolate } from 'react-spring'
 import { isTouchesInsideRect, getMiddleTouchOnElement, getLengthOfLine, clamp } from '../../helpers'
 import { Slide as StyledSlide } from './Slide.css'
@@ -20,9 +21,9 @@ export default function Slide({ children, onScale }) {
     translateX: 0,
     translateY: 0,
     immediate: true,
-    onFrame: ({ scale }) => {
+    onFrame: ({ scale: currentScale }) => {
       if (typeof onScale === 'function') {
-        onScale({ scale })
+        onScale({ scale: currentScale })
       }
     },
   }))
@@ -61,7 +62,7 @@ export default function Slide({ children, onScale }) {
   const handleTouchMove = useCallback(
     event => {
       if (firstTouch.current) {
-        const middleTouchOnElement = getMiddleTouchOnElement(
+        const currentMiddleTouchOnElement = getMiddleTouchOnElement(
           event.touches,
           initialBoundingRect.current
         )
@@ -69,11 +70,12 @@ export default function Slide({ children, onScale }) {
         const [touch1, touch2] = event.touches
         const currentPinchLength = getLengthOfLine(touch1, touch2)
 
-        const scale = clamp(currentPinchLength / initialPinchLength.current, MIN_SCALE, MAX_SCALE)
-        const translateX = middleTouchOnElement.clientX - firstTouch.current[0]
-        const translateY = middleTouchOnElement.clientY - firstTouch.current[1]
-
-        set({ scale, translateX, translateY, immediate: true })
+        set({
+          scale: clamp(currentPinchLength / initialPinchLength.current, MIN_SCALE, MAX_SCALE),
+          translateX: currentMiddleTouchOnElement.clientX - firstTouch.current[0],
+          translateY: currentMiddleTouchOnElement.clientY - firstTouch.current[1],
+          immediate: true,
+        })
       }
     },
     [set]
@@ -104,8 +106,7 @@ export default function Slide({ children, onScale }) {
       style={{
         transform: interpolate(
           [scale, translateX, translateY],
-          (scale, translateX, translateY) =>
-            `translate3d(${translateX}px, ${translateY}px, 0) scale3d(${scale}, ${scale}, 1)`
+          (sc, x, y) => `translate3d(${x}px, ${y}px, 0) scale3d(${sc}, ${sc}, 1)`
         ),
         transformOrigin: middleTouchOnElement.interpolate((x, y) => `${x}px ${y}px 0`),
       }}
@@ -113,4 +114,13 @@ export default function Slide({ children, onScale }) {
       {children}
     </AnimatedSlide>
   )
+}
+
+Slide.propTypes = {
+  children: PropTypes.node.isRequired,
+  onScale: PropTypes.func,
+}
+
+Slide.defaultProps = {
+  onScale: undefined,
 }

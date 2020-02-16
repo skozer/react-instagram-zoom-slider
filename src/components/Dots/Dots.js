@@ -1,8 +1,9 @@
 import React, { useRef } from 'react'
+import PropTypes from 'prop-types'
 import { clamp } from '../../helpers'
 import { Dots as StyledDots, Dot as StyledDot } from './Dots.css'
 
-export default function Dots({ slides, currentSlide, centerDots, dotColor, activeDotColor }) {
+export default function Dots({ activeDotColor, centerDots, currentSlide, dotColor, totalSlides }) {
   const centerOffset = useRef(0)
   const slideOffset = useRef(0)
 
@@ -15,7 +16,7 @@ export default function Dots({ slides, currentSlide, centerDots, dotColor, activ
 
   return (
     <StyledDots>
-      {slides.map((_, idx) => {
+      {[...Array(totalSlides)].map((_, idx) => {
         const centerPage = parseInt(centerDots / 2, 10) + slideOffset.current
         const distance = Math.abs(idx - centerPage)
 
@@ -27,6 +28,7 @@ export default function Dots({ slides, currentSlide, centerDots, dotColor, activ
             activeDotColor={activeDotColor}
             active={idx === currentSlide}
             distance={scaledDistance}
+            // eslint-disable-next-line react/no-array-index-key
             key={idx}
           />
         )
@@ -35,8 +37,16 @@ export default function Dots({ slides, currentSlide, centerDots, dotColor, activ
   )
 }
 
+Dots.propTypes = {
+  activeDotColor: PropTypes.string,
+  centerDots: PropTypes.number,
+  currentSlide: PropTypes.number.isRequired,
+  dotColor: PropTypes.string,
+  totalSlides: PropTypes.number.isRequired,
+}
+
 Dots.defaultProps = {
+  activeDotColor: '#4e99e9',
   centerDots: 3,
   dotColor: '#dadbdc',
-  activeDotColor: '#4e99e9',
 }
