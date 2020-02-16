@@ -1,3 +1,4 @@
+/* eslint-env jest */
 import Slider from '.'
 
 describe('Slider', () => {
