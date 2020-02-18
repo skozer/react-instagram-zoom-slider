@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/skozer/react-instagram-zoom-slider/compare/v1.1.0...v1.1.1) (2020-02-18)
+
+
+### Bug Fixes
+
+* Prevent native scrolling when dragging on the x-axis ([4d60b28](https://github.com/skozer/react-instagram-zoom-slider/commit/4d60b28297a91883422a8890c50c8d8f4deb8931))
+* Reset line height on slide indicator ([e0bcbaf](https://github.com/skozer/react-instagram-zoom-slider/commit/e0bcbaf7df6b0abb57a00235d87b98183df8a97a))
+
 # [1.1.0](https://github.com/skozer/react-instagram-zoom-slider/compare/v1.0.2...v1.1.0) (2020-02-16)
 
 
