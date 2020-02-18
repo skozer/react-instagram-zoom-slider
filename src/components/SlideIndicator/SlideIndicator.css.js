@@ -14,4 +14,5 @@ export const SlideIndicator = styled.div`
   letter-spacing: 1px;
   user-select: none;
   pointer-events: none;
+  line-height: 1;
 `
