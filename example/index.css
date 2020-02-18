@@ -5,8 +5,8 @@ body {
     'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.example {
-  overflow-x: hidden;
+#root {
+  overflow: hidden;
 }
 
 .example p {

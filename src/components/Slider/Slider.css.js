@@ -5,6 +5,7 @@ export const Slider = styled.div`
   grid-auto-flow: column;
   width: 100%;
   user-select: none;
+  touch-action: pan-y;
   -webkit-user-drag: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 `
