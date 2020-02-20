@@ -17,3 +17,8 @@ export const Overlay = styled.div`
   right: 0;
   bottom: 0;
 `
+
+export const SlideOverlay = styled.div`
+  position: relative;
+  z-index: ${props => (props.inFront ? 20 : 0)};
+`
