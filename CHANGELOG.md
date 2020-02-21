@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/skozer/react-instagram-zoom-slider/compare/v1.1.1...v1.2.0) (2020-02-21)
+
+
+### Features
+
+* Expose dot colors and indicator timeout props ([#3](https://github.com/skozer/react-instagram-zoom-slider/issues/3)) ([dae1ed8](https://github.com/skozer/react-instagram-zoom-slider/commit/dae1ed82da7e9307e75278ba3dbd7fdc21f52717))
+* Overlay content on slider ([f05fd11](https://github.com/skozer/react-instagram-zoom-slider/commit/f05fd1120ecb1514e581668e4808f19ab05088cb)), closes [#1](https://github.com/skozer/react-instagram-zoom-slider/issues/1)
+
 ## [1.1.1](https://github.com/skozer/react-instagram-zoom-slider/compare/v1.1.0...v1.1.1) (2020-02-18)
 
 
