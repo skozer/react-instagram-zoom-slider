@@ -15,7 +15,13 @@ import {
 const AnimatedOverlay = animated(StyledOverlay)
 const AnimatedSlider = animated(StyledSlider)
 
-export default function Slider({ slides, slideOverlay }) {
+export default function Slider({
+  slides,
+  slideOverlay,
+  slideIndicatorTimeout,
+  activeDotColor,
+  dotColor,
+}) {
   const [{ x, scale }, set] = useSpring(() => ({
     x: 0,
     scale: 1,
@@ -41,10 +47,12 @@ export default function Slider({ slides, slideOverlay }) {
   )
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIndicator(false)
-    }, 5000)
-    return () => clearTimeout(timer)
+    if (slideIndicatorTimeout !== null) {
+      const timer = setTimeout(() => {
+        setIndicator(false)
+      }, slideIndicatorTimeout)
+      return () => clearTimeout(timer)
+    }
   }, [])
 
   const bind = useDrag(
@@ -140,6 +148,8 @@ export default function Slider({ slides, slideOverlay }) {
           totalSlides={slides.length}
           currentSlide={currentSlide}
           centerDots={slides.length < 6 ? slides.length : undefined}
+          dotColor={dotColor}
+          activeDotColor={activeDotColor}
         />
       )}
     </div>
@@ -147,10 +157,21 @@ export default function Slider({ slides, slideOverlay }) {
 }
 
 Slider.propTypes = {
+  /** List of slides to render */
   slides: PropTypes.arrayOf(PropTypes.node).isRequired,
+  /** Content to overlay on the slider */
   slideOverlay: PropTypes.node,
+  /** Time in ms until the slide indicator fades out. Set to `null` to disable this behavior. */
+  slideIndicatorTimeout: PropTypes.number,
+  /** Pagination dot color for the active slide */
+  activeDotColor: PropTypes.string,
+  /** Pagination dot color for all other slides */
+  dotColor: PropTypes.string,
 }
 
 Slider.defaultProps = {
   slideOverlay: null,
+  slideIndicatorTimeout: 5000,
+  activeDotColor: '#4e99e9',
+  dotColor: '#dadbdc',
 }
