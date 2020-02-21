@@ -6,12 +6,16 @@ import Slide from '../Slide'
 import Dots from '../Dots'
 import SlideIndicator from '../SlideIndicator'
 import { clamp } from '../../helpers'
-import { Slider as StyledSlider, Overlay as StyledOverlay } from './Slider.css'
+import {
+  Overlay as StyledOverlay,
+  SlideOverlay as StyledSlideOverlay,
+  Slider as StyledSlider,
+} from './Slider.css'
 
-const AnimatedSlider = animated(StyledSlider)
 const AnimatedOverlay = animated(StyledOverlay)
+const AnimatedSlider = animated(StyledSlider)
 
-export default function Slider({ slides }) {
+export default function Slider({ slides, slideOverlay }) {
   const [{ x, scale }, set] = useSpring(() => ({
     x: 0,
     scale: 1,
@@ -107,12 +111,14 @@ export default function Slider({ slides }) {
         />
       )}
 
-      <SlideIndicator
-        totalSlides={slides.length}
-        currentSlide={currentSlide}
-        isVisible={showIndicator}
-        inFront={!zooming}
-      />
+      <StyledSlideOverlay inFront={!zooming}>
+        {slideOverlay}
+        <SlideIndicator
+          totalSlides={slides.length}
+          currentSlide={currentSlide}
+          isVisible={showIndicator}
+        />
+      </StyledSlideOverlay>
 
       <AnimatedSlider
         // eslint-disable-next-line react/jsx-props-no-spreading
@@ -142,4 +148,9 @@ export default function Slider({ slides }) {
 
 Slider.propTypes = {
   slides: PropTypes.arrayOf(PropTypes.node).isRequired,
+  slideOverlay: PropTypes.node,
+}
+
+Slider.defaultProps = {
+  slideOverlay: null,
 }

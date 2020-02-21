@@ -15,6 +15,10 @@ body {
   line-height: 1.4;
 }
 
+.example h1 {
+  margin: 20px;
+}
+
 img {
   width: 100%;
   height: auto;
