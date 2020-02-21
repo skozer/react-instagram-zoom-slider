@@ -60,6 +60,9 @@ function Example() {
             />
           </button>
         }
+        slideIndicatorTimeout={null}
+        activeDotColor="#ff9800"
+        dotColor="#4b4b4b"
       />
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. At eveniet dolorem, iure dolor
