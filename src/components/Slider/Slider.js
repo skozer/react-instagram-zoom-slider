@@ -8,7 +8,7 @@ import {
   ACTIVE_DOT_COLOR_DEFAULT,
   DOT_COLOR_DEFAULT,
 } from '../../constants'
-import useSlider from '../../hooks/useSlider'
+import { useSlider } from '../../hooks'
 import Dots from '../Dots'
 import Slide from '../Slide'
 import SlideIndicator from '../SlideIndicator'

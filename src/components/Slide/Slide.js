@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { animated, interpolate } from 'react-spring'
-import useZoom from '../../hooks/useZoom'
+import { useZoom } from '../../hooks'
 import { MAX_SCALE_DEFAULT, MIN_SCALE_DEFAULT } from '../../constants'
 import { Slide as StyledSlide } from './Slide.css'
 
