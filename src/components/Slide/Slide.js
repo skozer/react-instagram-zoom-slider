@@ -2,15 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { animated, interpolate } from 'react-spring'
 import useZoom from '../../hooks/useZoom'
+import { MAX_SCALE_DEFAULT, MIN_SCALE_DEFAULT } from '../../constants'
 import { Slide as StyledSlide } from './Slide.css'
-
-// TOOD: Move these to props
-const minScale = 1
-const maxScale = 4
 
 const AnimatedSlide = animated(StyledSlide)
 
-export default function Slide({ children, onScale }) {
+export default function Slide({ children, onScale, minScale, maxScale }) {
   const [element, scale, translateX, translateY, middleTouchOnElement] = useZoom({
     minScale,
     maxScale,
@@ -36,8 +33,12 @@ export default function Slide({ children, onScale }) {
 Slide.propTypes = {
   children: PropTypes.node.isRequired,
   onScale: PropTypes.func,
+  minScale: PropTypes.number,
+  maxScale: PropTypes.number,
 }
 
 Slide.defaultProps = {
   onScale: undefined,
+  maxScale: MAX_SCALE_DEFAULT,
+  minScale: MIN_SCALE_DEFAULT,
 }

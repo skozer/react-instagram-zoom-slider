@@ -5,7 +5,12 @@ import useSlider from '../../hooks/useSlider'
 import Slide from '../Slide'
 import Dots from '../Dots'
 import SlideIndicator from '../SlideIndicator'
-
+import {
+  MAX_SCALE_DEFAULT,
+  MIN_SCALE_DEFAULT,
+  ACTIVE_DOT_COLOR_DEFAULT,
+  DOT_COLOR_DEFAULT,
+} from '../../constants'
 import {
   Overlay as StyledOverlay,
   SlideOverlay as StyledSlideOverlay,
@@ -79,6 +84,10 @@ export default function Slider({
 Slider.propTypes = {
   /** List of slides to render */
   slides: PropTypes.arrayOf(PropTypes.node).isRequired,
+  /** Maximum zoom level */
+  maxScale: PropTypes.number,
+  /** Minimum zoom level */
+  minScale: PropTypes.number,
   /** Content to overlay on the slider */
   slideOverlay: PropTypes.node,
   /** Time in ms until the slide indicator fades out. Set to `null` to disable this behavior. */
@@ -90,8 +99,10 @@ Slider.propTypes = {
 }
 
 Slider.defaultProps = {
+  maxScale: MAX_SCALE_DEFAULT,
+  minScale: MIN_SCALE_DEFAULT,
   slideOverlay: null,
   slideIndicatorTimeout: 5000,
-  activeDotColor: '#4e99e9',
-  dotColor: '#dadbdc',
+  activeDotColor: ACTIVE_DOT_COLOR_DEFAULT,
+  dotColor: DOT_COLOR_DEFAULT,
 }
