@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/skozer/react-instagram-zoom-slider/compare/v1.2.0...v1.3.0) (2020-02-22)
+
+
+### Features
+
+* Custom hooks for slider and zoom ([#4](https://github.com/skozer/react-instagram-zoom-slider/issues/4)) ([d4d254a](https://github.com/skozer/react-instagram-zoom-slider/commit/d4d254a89b8c8319e5a51150028f9ed2852fd780))
+
 # [1.3.0-beta.1](https://github.com/skozer/react-instagram-zoom-slider/compare/v1.2.0...v1.3.0-beta.1) (2020-02-22)
 
 
