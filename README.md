@@ -42,6 +42,12 @@ Common props you may want to specify include:
 | `activeDotColor`        | Pagination dot color for the active slide                                                            | #4e99e9    |
 | `dotColor`              | Pagination dot color for all other slides                                                            | #dadbdc    |
 
+### Building a custom slider
+
+If you need to customize the slider components beyond what is available
+via props, you can use the `useSlider` and `useZoom` hooks to build your
+own components with slide and zoom functionality.
+
 ## License
 
 MIT Licensed. Copyright © [Sean Kozer](https://github.com/skozer) 2020.
