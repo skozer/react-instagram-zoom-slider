@@ -1,11 +1,17 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import { useSpring, animated } from 'react-spring'
-import { useDrag } from 'react-use-gesture'
-import Slide from '../Slide'
+import { animated } from 'react-spring'
+import {
+  MAX_SCALE_DEFAULT,
+  MIN_SCALE_DEFAULT,
+  SLIDE_INDICATOR_TIMEOUT_DEFAULT,
+  ACTIVE_DOT_COLOR_DEFAULT,
+  DOT_COLOR_DEFAULT,
+} from '../../constants'
+import { useSlider } from '../../hooks'
 import Dots from '../Dots'
+import Slide from '../Slide'
 import SlideIndicator from '../SlideIndicator'
-import { clamp } from '../../helpers'
 import {
   Overlay as StyledOverlay,
   SlideOverlay as StyledSlideOverlay,
@@ -22,90 +28,9 @@ export default function Slider({
   activeDotColor,
   dotColor,
 }) {
-  const [{ x, scale }, set] = useSpring(() => ({
-    x: 0,
-    scale: 1,
-    config: { tension: 270, clamp: true },
-  }))
-  const index = useRef(0)
-
-  // Slide numbers (for display purposes only)
-  const [currentSlide, updateSlide] = useState(0)
-  const [showIndicator, setIndicator] = useState(true)
-  const [zooming, setZooming] = useState(false)
-
-  const onScale = useCallback(
-    slideProps => {
-      set({ scale: slideProps.scale })
-      if (slideProps.scale === 1) {
-        setZooming(false)
-      } else {
-        setZooming(true)
-      }
-    },
-    [set]
-  )
-
-  useEffect(() => {
-    if (slideIndicatorTimeout !== null) {
-      const timer = setTimeout(() => {
-        setIndicator(false)
-      }, slideIndicatorTimeout)
-      return () => clearTimeout(timer)
-    }
-  }, [])
-
-  const bind = useDrag(
-    ({
-      down,
-      movement: [xMovement],
-      direction: [xDir],
-      distance,
-      swipe: [swipeX],
-      cancel,
-      touches,
-    }) => {
-      // We don't want to interrupt the pinch-to-zoom gesture
-      if (touches > 1) {
-        cancel()
-      }
-
-      // We have swiped past halfway
-      if (!down && distance > window.innerWidth / 2) {
-        // Move to the next slide
-        const slideDir = xDir > 0 ? -1 : 1
-        index.current = clamp(index.current + slideDir, 0, slides.length - 1)
-
-        set({
-          x: -index.current * window.innerWidth + (down ? xMovement : 0),
-          immediate: false,
-        })
-      } else if (swipeX !== 0) {
-        // We have detected a swipe - update the new index
-        index.current = clamp(index.current - swipeX, 0, slides.length - 1)
-      }
-
-      // Animate the transition
-      set({
-        x: -index.current * window.innerWidth + (down ? xMovement : 0),
-        immediate: down,
-      })
-
-      // Update the slide number for display purposes
-      updateSlide(index.current)
-    },
-    {
-      axis: 'x',
-      bounds: {
-        left: currentSlide === slides.length - 1 ? 0 : -Infinity,
-        right: index.current === 0 ? 0 : Infinity,
-        top: 0,
-        bottom: 0,
-      },
-      rubberband: true,
-      enabled: slides.length > 1,
-    }
-  )
+  const [zooming, scale, currentSlide, bind, x, onScale] = useSlider({
+    slides,
+  })
 
   return (
     <div>
@@ -122,9 +47,9 @@ export default function Slider({
       <StyledSlideOverlay inFront={!zooming}>
         {slideOverlay}
         <SlideIndicator
-          totalSlides={slides.length}
+          slideIndicatorTimeout={slideIndicatorTimeout}
           currentSlide={currentSlide}
-          isVisible={showIndicator}
+          totalSlides={slides.length}
         />
       </StyledSlideOverlay>
 
@@ -159,6 +84,10 @@ export default function Slider({
 Slider.propTypes = {
   /** List of slides to render */
   slides: PropTypes.arrayOf(PropTypes.node).isRequired,
+  /** Maximum zoom level */
+  maxScale: PropTypes.number,
+  /** Minimum zoom level */
+  minScale: PropTypes.number,
   /** Content to overlay on the slider */
   slideOverlay: PropTypes.node,
   /** Time in ms until the slide indicator fades out. Set to `null` to disable this behavior. */
@@ -170,8 +99,10 @@ Slider.propTypes = {
 }
 
 Slider.defaultProps = {
+  maxScale: MAX_SCALE_DEFAULT,
+  minScale: MIN_SCALE_DEFAULT,
   slideOverlay: null,
-  slideIndicatorTimeout: 5000,
-  activeDotColor: '#4e99e9',
-  dotColor: '#dadbdc',
+  slideIndicatorTimeout: SLIDE_INDICATOR_TIMEOUT_DEFAULT,
+  activeDotColor: ACTIVE_DOT_COLOR_DEFAULT,
+  dotColor: DOT_COLOR_DEFAULT,
 }
