@@ -1,13 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { animated } from 'react-spring'
-import {
-  MAX_SCALE_DEFAULT,
-  MIN_SCALE_DEFAULT,
-  SLIDE_INDICATOR_TIMEOUT_DEFAULT,
-  ACTIVE_DOT_COLOR_DEFAULT,
-  DOT_COLOR_DEFAULT,
-} from '../../constants'
+import { defaultProps } from '../../constants'
 import { useSlider } from '../../hooks'
 import Dots from '../Dots'
 import Slide from '../Slide'
@@ -99,10 +93,10 @@ Slider.propTypes = {
 }
 
 Slider.defaultProps = {
-  maxScale: MAX_SCALE_DEFAULT,
-  minScale: MIN_SCALE_DEFAULT,
+  maxScale: defaultProps.maxScale,
+  minScale: defaultProps.minScale,
   slideOverlay: null,
-  slideIndicatorTimeout: SLIDE_INDICATOR_TIMEOUT_DEFAULT,
-  activeDotColor: ACTIVE_DOT_COLOR_DEFAULT,
-  dotColor: DOT_COLOR_DEFAULT,
+  slideIndicatorTimeout: defaultProps.slideIndicatorTimeout,
+  activeDotColor: defaultProps.activeDotColor,
+  dotColor: defaultProps.dotColor,
 }

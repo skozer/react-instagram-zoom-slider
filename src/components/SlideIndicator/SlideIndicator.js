@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { animated, useTransition } from 'react-spring'
-import { SLIDE_INDICATOR_TIMEOUT_DEFAULT } from '../../constants'
+import { defaultProps } from '../../constants'
 import { SlideIndicator as StyledSlideIndicator } from './SlideIndicator.css'
 
 const AnimatedSlideIndicator = animated(StyledSlideIndicator)
@@ -56,5 +56,5 @@ SlideIndicator.propTypes = {
 
 SlideIndicator.defaultProps = {
   inFront: true,
-  slideIndicatorTimeout: SLIDE_INDICATOR_TIMEOUT_DEFAULT,
+  slideIndicatorTimeout: defaultProps.slideIndicatorTimeout,
 }
