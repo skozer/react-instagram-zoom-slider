@@ -28,6 +28,20 @@ function App() {
 }
 ```
 
+### Common Props
+
+Common props you may want to specify include:
+
+| Prop                    | Description                                                                                          | Default    |
+| ----------------------- | ---------------------------------------------------------------------------------------------------- | ---------- |
+| `slides`                | List of slides to render                                                                             | _Required_ |
+| `maxScale`              | Maximum zoom level                                                                                   | 4          |
+| `minScale`              | Minimum zoom level                                                                                   | 1          |
+| `slideOverlay`          | Content to overlay on the slider                                                                     | null       |
+| `slideIndicatorTimeout` | Time in milliseconds until the slide indicator fades out.<br>Set to `null` to disable this behavior. | 5000       |
+| `activeDotColor`        | Pagination dot color for the active slide                                                            | #4e99e9    |
+| `dotColor`              | Pagination dot color for all other slides                                                            | #dadbdc    |
+
 ## License
 
 MIT Licensed. Copyright © [Sean Kozer](https://github.com/skozer) 2020.
