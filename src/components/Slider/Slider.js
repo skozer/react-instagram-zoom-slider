@@ -1,16 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { animated } from 'react-spring'
-import useSlider from '../../hooks/useSlider'
-import Slide from '../Slide'
-import Dots from '../Dots'
-import SlideIndicator from '../SlideIndicator'
 import {
   MAX_SCALE_DEFAULT,
   MIN_SCALE_DEFAULT,
+  SLIDE_INDICATOR_TIMEOUT_DEFAULT,
   ACTIVE_DOT_COLOR_DEFAULT,
   DOT_COLOR_DEFAULT,
 } from '../../constants'
+import useSlider from '../../hooks/useSlider'
+import Dots from '../Dots'
+import Slide from '../Slide'
+import SlideIndicator from '../SlideIndicator'
 import {
   Overlay as StyledOverlay,
   SlideOverlay as StyledSlideOverlay,
@@ -27,9 +28,8 @@ export default function Slider({
   activeDotColor,
   dotColor,
 }) {
-  const [zooming, scale, currentSlide, showIndicator, bind, x, onScale] = useSlider({
+  const [zooming, scale, currentSlide, bind, x, onScale] = useSlider({
     slides,
-    slideIndicatorTimeout,
   })
 
   return (
@@ -47,9 +47,9 @@ export default function Slider({
       <StyledSlideOverlay inFront={!zooming}>
         {slideOverlay}
         <SlideIndicator
-          totalSlides={slides.length}
+          slideIndicatorTimeout={slideIndicatorTimeout}
           currentSlide={currentSlide}
-          isVisible={showIndicator}
+          totalSlides={slides.length}
         />
       </StyledSlideOverlay>
 
@@ -102,7 +102,7 @@ Slider.defaultProps = {
   maxScale: MAX_SCALE_DEFAULT,
   minScale: MIN_SCALE_DEFAULT,
   slideOverlay: null,
-  slideIndicatorTimeout: 5000,
+  slideIndicatorTimeout: SLIDE_INDICATOR_TIMEOUT_DEFAULT,
   activeDotColor: ACTIVE_DOT_COLOR_DEFAULT,
   dotColor: DOT_COLOR_DEFAULT,
 }

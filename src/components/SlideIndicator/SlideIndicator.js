@@ -1,11 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { animated, useTransition } from 'react-spring'
+import { SLIDE_INDICATOR_TIMEOUT_DEFAULT } from '../../constants'
 import { SlideIndicator as StyledSlideIndicator } from './SlideIndicator.css'
 
 const AnimatedSlideIndicator = animated(StyledSlideIndicator)
 
-export default function SlideIndicator({ currentSlide, inFront, isVisible, totalSlides }) {
+export default function SlideIndicator({
+  currentSlide,
+  inFront,
+  slideIndicatorTimeout,
+  totalSlides,
+}) {
+  const [isVisible, setVisible] = useState(true)
+
+  useEffect(() => {
+    if (slideIndicatorTimeout !== null) {
+      const timer = setTimeout(() => {
+        setVisible(false)
+      }, slideIndicatorTimeout)
+      return () => clearTimeout(timer)
+    }
+  }, [])
+
   const transitions = useTransition(isVisible, null, {
     from: { opacity: 1 },
     enter: { opacity: 1 },
@@ -33,11 +50,11 @@ export default function SlideIndicator({ currentSlide, inFront, isVisible, total
 SlideIndicator.propTypes = {
   currentSlide: PropTypes.number.isRequired,
   inFront: PropTypes.bool,
-  isVisible: PropTypes.bool,
+  slideIndicatorTimeout: PropTypes.number,
   totalSlides: PropTypes.number.isRequired,
 }
 
 SlideIndicator.defaultProps = {
   inFront: true,
-  isVisible: true,
+  slideIndicatorTimeout: SLIDE_INDICATOR_TIMEOUT_DEFAULT,
 }

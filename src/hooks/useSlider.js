@@ -1,9 +1,9 @@
-import { useRef, useState, useEffect, useCallback } from 'react'
+import { useRef, useState, useCallback } from 'react'
 import { useSpring } from 'react-spring'
 import { useDrag } from 'react-use-gesture'
 import { clamp } from '../helpers'
 
-export default function useSlider({ slides, slideIndicatorTimeout }) {
+export default function useSlider({ slides }) {
   const [{ x, scale }, set] = useSpring(() => ({
     x: 0,
     scale: 1,
@@ -13,7 +13,6 @@ export default function useSlider({ slides, slideIndicatorTimeout }) {
 
   // Slide numbers (for display purposes only)
   const [currentSlide, updateSlide] = useState(0)
-  const [showIndicator, setIndicator] = useState(true)
   const [zooming, setZooming] = useState(false)
 
   const onScale = useCallback(
@@ -27,15 +26,6 @@ export default function useSlider({ slides, slideIndicatorTimeout }) {
     },
     [set]
   )
-
-  useEffect(() => {
-    if (slideIndicatorTimeout !== null) {
-      const timer = setTimeout(() => {
-        setIndicator(false)
-      }, slideIndicatorTimeout)
-      return () => clearTimeout(timer)
-    }
-  }, [])
 
   const bind = useDrag(
     ({
@@ -89,5 +79,5 @@ export default function useSlider({ slides, slideIndicatorTimeout }) {
     }
   )
 
-  return [zooming, scale, currentSlide, showIndicator, bind, x, onScale]
+  return [zooming, scale, currentSlide, bind, x, onScale]
 }
