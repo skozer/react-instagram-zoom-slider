@@ -48,6 +48,7 @@ export default function Slider({
       </StyledSlideOverlay>
 
       <AnimatedSlider
+        isZooming={zooming}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...bind()}
         style={{
