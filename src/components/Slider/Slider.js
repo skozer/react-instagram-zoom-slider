@@ -33,7 +33,7 @@ export default function Slider({
           style={{
             backgroundColor: scale
               .interpolate({ range: [1, 2, 10], output: [0, 0.7, 0.7] })
-              .interpolate(opacity => `rgba(0, 0, 0, ${opacity})`),
+              .interpolate((opacity) => `rgba(0, 0, 0, ${opacity})`),
           }}
         />
       )}
@@ -48,10 +48,11 @@ export default function Slider({
       </StyledSlideOverlay>
 
       <AnimatedSlider
+        isZooming={zooming}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...bind()}
         style={{
-          transform: x.interpolate(slideX => `translateX(${slideX}px`),
+          transform: x.interpolate((slideX) => `translateX(${slideX}px`),
         }}
       >
         {slides.map((slide, idx) => (
@@ -76,6 +77,8 @@ export default function Slider({
 }
 
 Slider.propTypes = {
+  /** Index of first slide */
+  initialSlide: PropTypes.number,
   /** List of slides to render */
   slides: PropTypes.arrayOf(PropTypes.node).isRequired,
   /** Maximum zoom level */
@@ -93,6 +96,7 @@ Slider.propTypes = {
 }
 
 Slider.defaultProps = {
+  initialSlide: defaultProps.initialSlide,
   maxScale: defaultProps.maxScale,
   minScale: defaultProps.minScale,
   slideOverlay: null,
