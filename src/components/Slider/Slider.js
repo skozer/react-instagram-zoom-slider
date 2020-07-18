@@ -77,8 +77,6 @@ export default function Slider({
 }
 
 Slider.propTypes = {
-  /** Index of first slide */
-  initialSlide: PropTypes.number,
   /** List of slides to render */
   slides: PropTypes.arrayOf(PropTypes.node).isRequired,
   /** Maximum zoom level */
@@ -96,7 +94,6 @@ Slider.propTypes = {
 }
 
 Slider.defaultProps = {
-  initialSlide: defaultProps.initialSlide,
   maxScale: defaultProps.maxScale,
   minScale: defaultProps.minScale,
   slideOverlay: null,
