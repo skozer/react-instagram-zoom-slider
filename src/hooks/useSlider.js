@@ -3,16 +3,20 @@ import { useSpring } from 'react-spring'
 import { useDrag } from 'react-use-gesture'
 import { clamp } from '../helpers'
 
-export default function useSlider({ slides }) {
+export default function useSlider({ initialSlide, slides }) {
+  const slideIndex = clamp(initialSlide, 0, slides.length - 1)
+  const sliderX = window.innerWidth * slideIndex
+
   const [{ x, scale }, set] = useSpring(() => ({
-    x: 0,
+    x: -sliderX,
     scale: 1,
     config: { tension: 270, clamp: true },
   }))
-  const index = useRef(0)
+
+  const index = useRef(slideIndex)
 
   // Slide numbers (for display purposes only)
-  const [currentSlide, updateSlide] = useState(0)
+  const [currentSlide, updateSlide] = useState(slideIndex)
   const [zooming, setZooming] = useState(false)
 
   const onScale = useCallback(

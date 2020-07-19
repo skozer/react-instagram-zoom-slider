@@ -1,4 +1,5 @@
 export const defaultProps = {
+  initialSlide: 0,
   maxScale: 4,
   minScale: 1,
   slideIndicatorTimeout: 5000,
