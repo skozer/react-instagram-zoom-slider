@@ -78,7 +78,7 @@ export default function Slider({
 }
 
 Slider.propTypes = {
-  /** Index of first slide */
+  /** Index of the slide to be rendered by default */
   initialSlide: PropTypes.number,
   /** List of slides to render */
   slides: PropTypes.arrayOf(PropTypes.node).isRequired,
