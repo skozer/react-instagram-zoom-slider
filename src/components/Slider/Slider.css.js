@@ -9,7 +9,7 @@ export const Slider = styled.div`
   touch-action: pan-y;
   -webkit-user-drag: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  z-index: ${(props) => (props.isZooming ? 20 : 0)};
+  z-index: ${props => (props.isZooming ? 20 : 0)};
 `
 
 export const Overlay = styled.div`
@@ -23,5 +23,5 @@ export const Overlay = styled.div`
 
 export const SlideOverlay = styled.div`
   position: relative;
-  z-index: ${(props) => (props.inFront ? 10 : 0)};
+  z-index: ${props => (props.inFront ? 10 : 0)};
 `
