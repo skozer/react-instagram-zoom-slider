@@ -35,6 +35,7 @@ Common props you may want to specify include:
 | Prop                    | Description                                                                                          | Default    |
 | ----------------------- | ---------------------------------------------------------------------------------------------------- | ---------- |
 | `slides`                | List of slides to render                                                                             | _Required_ |
+| `initialSlide`          | Index of the slide to be rendered by default                                                         | 0          |
 | `maxScale`              | Maximum zoom level                                                                                   | 4          |
 | `minScale`              | Minimum zoom level                                                                                   | 1          |
 | `slideOverlay`          | Content to overlay on the slider                                                                     | null       |
