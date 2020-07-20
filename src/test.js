@@ -1,13 +1,10 @@
-/* eslint-env jest */
+/**
+ * @jest-environment node
+ */
+/* eslint-disable no-undef */
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import Slider from '.'
-
-describe('Slider', () => {
-  it('is truthy', () => {
-    expect(Slider).toBeTruthy()
-  })
-})
 
 describe('Server-side rendering', () => {
   it('renders on a server without crashing', () => {

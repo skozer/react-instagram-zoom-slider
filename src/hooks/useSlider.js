@@ -5,9 +5,10 @@ import { clamp } from '../helpers'
 
 export default function useSlider({ initialSlide, slides }) {
   const slideIndex = clamp(initialSlide, 0, slides.length - 1)
+  const sliderX = typeof window === 'object' ? window.innerWidth * slideIndex : 0
 
   const [{ x, scale }, set] = useSpring(() => ({
-    x: -window.innerWidth * slideIndex,
+    x: -sliderX,
     scale: 1,
     config: { tension: 270, clamp: true },
   }))
