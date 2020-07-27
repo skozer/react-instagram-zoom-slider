@@ -4,25 +4,26 @@ import { useDrag } from 'react-use-gesture'
 import { clamp } from '../helpers'
 
 export default function useSlider({ initialSlide, slides }) {
-  const slideIndex = clamp(initialSlide, 0, slides.length - 1)
-  const sliderX = typeof window === 'object' ? -window.innerWidth * slideIndex : 0
-
   const [{ x, scale }, set] = useSpring(() => ({
-    x: sliderX,
+    x: typeof window !== 'undefined' ? -window.innerWidth * initialSlide : 0,
     scale: 1,
     config: { tension: 270, clamp: true },
   }))
 
-  const index = useRef(slideIndex)
+  const index = useRef(initialSlide)
 
   // Slide numbers (for display purposes only)
-  const [currentSlide, updateSlide] = useState(slideIndex)
+  const [currentSlide, updateSlide] = useState(initialSlide)
   const [zooming, setZooming] = useState(false)
 
   const onScale = useCallback(
     slideProps => {
       set({ scale: slideProps.scale })
-      setZooming(slideProps.scale === 1)
+      if (slideProps.scale === 1) {
+        setZooming(false)
+      } else {
+        setZooming(true)
+      }
     },
     [set]
   )
