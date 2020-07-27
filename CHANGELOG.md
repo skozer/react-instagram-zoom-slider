@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/skozer/react-instagram-zoom-slider/compare/v1.3.0...v1.4.0) (2020-07-27)
+
+
+### Bug Fixes
+
+* Fixed multiple sliders overlapping on zoom ([#12](https://github.com/skozer/react-instagram-zoom-slider/issues/12)) ([1e33ac9](https://github.com/skozer/react-instagram-zoom-slider/commit/1e33ac9fb94fa731bbc7f658262cc8864175a6c6))
+
+
+### Features
+
+* Allow overriding initial slide ([#11](https://github.com/skozer/react-instagram-zoom-slider/issues/11)) ([bbaa7a5](https://github.com/skozer/react-instagram-zoom-slider/commit/bbaa7a5662d6c2ff903ad1e7a90ed21ae58a8a41))
+
 # [1.3.0](https://github.com/skozer/react-instagram-zoom-slider/compare/v1.2.0...v1.3.0) (2020-02-22)
 
 
