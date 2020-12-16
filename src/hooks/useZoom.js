@@ -2,11 +2,12 @@ import { useRef, useEffect, useCallback } from 'react'
 import { useSpring } from 'react-spring'
 import { isTouchesInsideRect, getMiddleTouchOnElement, getLengthOfLine, clamp } from '../helpers'
 
-export default function useZoom({ minScale, maxScale, onScale }) {
+export default function useZoom({ minScale, maxScale, onScale, retain }) {
   const element = useRef(null)
   const initialBoundingRect = useRef(null)
   const firstTouch = useRef(null)
   const initialPinchLength = useRef(null)
+  const difference = useRef(null)
 
   const [{ scale, middleTouchOnElement, translateX, translateY }, set] = useSpring(() => ({
     scale: 1,
@@ -27,7 +28,9 @@ export default function useZoom({ minScale, maxScale, onScale }) {
         return
       }
 
-      initialBoundingRect.current = element.current.getBoundingClientRect()
+      if (retain ? !initialBoundingRect.current : true) {
+        initialBoundingRect.current = element.current.getBoundingClientRect()
+      }
 
       if (
         !event.touches.length ||
@@ -45,7 +48,9 @@ export default function useZoom({ minScale, maxScale, onScale }) {
       )
 
       firstTouch.current = [clientX, clientY]
-      initialPinchLength.current = getLengthOfLine(touch1, touch2)
+      if (retain ? !initialPinchLength.current : true) {
+        initialPinchLength.current = getLengthOfLine(touch1, touch2)
+      }
 
       set({ middleTouchOnElement: [clientX, clientY], immediate: true })
     },
@@ -57,14 +62,16 @@ export default function useZoom({ minScale, maxScale, onScale }) {
       if (firstTouch.current) {
         const currentMiddleTouchOnElement = getMiddleTouchOnElement(
           event.touches,
-          initialBoundingRect.current
+          initialBoundingRect.current,
+          difference.current
         )
 
-        const [touch1, touch2] = event.touches
-        const currentPinchLength = getLengthOfLine(touch1, touch2)
-
+        if (!retain ? event.touches.length : event.touches.length === 2) {
+          const [touch1, touch2] = event.touches
+          const currentPinchLength = getLengthOfLine(touch1, touch2)
+          set({ scale: clamp(currentPinchLength / initialPinchLength.current, minScale, maxScale) })
+        }
         set({
-          scale: clamp(currentPinchLength / initialPinchLength.current, minScale, maxScale),
           translateX: currentMiddleTouchOnElement.clientX - firstTouch.current[0],
           translateY: currentMiddleTouchOnElement.clientY - firstTouch.current[1],
           immediate: true,
@@ -74,17 +81,26 @@ export default function useZoom({ minScale, maxScale, onScale }) {
     [set]
   )
 
-  const handleTouchEnd = useCallback(() => {
-    set({
-      scale: 1,
-      translateX: 0,
-      translateY: 0,
-      immediate: false,
-    })
+  const handleTouchEnd = useCallback((event) => {
+    if (retain && event.touches.length === 1 && event.changedTouches.length === 1) {
+      const { clientX, clientY } = event.changedTouches[0]
+      difference.current = { clientX: event.touches[0].clientX - clientX, clientY: event.touches[0].clientY - clientY }
+    }
 
-    firstTouch.current = null
-    initialPinchLength.current = null
-    initialBoundingRect.current = null
+    if (retain ? event.touches.length < 1 : true) {
+      set({
+        scale: 1,
+        translateX: 0,
+        translateY: 0,
+        immediate: false,
+      })
+
+      firstTouch.current = null
+      initialPinchLength.current = null
+      initialBoundingRect.current = null
+      difference.current = null
+    }
+
   }, [set])
 
   useEffect(() => {

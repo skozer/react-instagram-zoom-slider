@@ -7,11 +7,12 @@ import { Slide as StyledSlide } from './Slide.css'
 
 const AnimatedSlide = animated(StyledSlide)
 
-export default function Slide({ children, onScale, minScale, maxScale }) {
+export default function Slide({ children, onScale, minScale, maxScale, retain }) {
   const [element, scale, translateX, translateY, middleTouchOnElement] = useZoom({
     minScale,
     maxScale,
     onScale,
+    retain,
   })
 
   return (
@@ -35,10 +36,12 @@ Slide.propTypes = {
   onScale: PropTypes.func,
   minScale: PropTypes.number,
   maxScale: PropTypes.number,
+  retain: PropTypes.bool,
 }
 
 Slide.defaultProps = {
   onScale: undefined,
   maxScale: defaultProps.maxScale,
   minScale: defaultProps.minScale,
+  retain: undefined,
 }
