@@ -42,6 +42,7 @@ Common props you may want to specify include:
 | `slideIndicatorTimeout` | Time in milliseconds until the slide indicator fades out.<br>Set to `null` to disable this behavior. | 5000       |
 | `activeDotColor`        | Pagination dot color for the active slide                                                            | #4e99e9    |
 | `dotColor`              | Pagination dot color for all other slides                                                            | #dadbdc    |
+| `retain`                | Retain zoom with one finger                                                                          | null       |
 
 ### Building a custom slider
 

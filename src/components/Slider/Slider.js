@@ -22,6 +22,7 @@ export default function Slider({
   slideIndicatorTimeout,
   activeDotColor,
   dotColor,
+  retain,
 }) {
   const [zooming, scale, currentSlide, bind, x, onScale] = useSlider({
     initialSlide,
@@ -59,7 +60,7 @@ export default function Slider({
       >
         {slides.map((slide, idx) => (
           // eslint-disable-next-line react/no-array-index-key
-          <Slide onScale={onScale} key={idx}>
+          <Slide onScale={onScale} key={idx} retain={retain}>
             {slide}
           </Slide>
         ))}
@@ -95,6 +96,8 @@ Slider.propTypes = {
   activeDotColor: PropTypes.string,
   /** Pagination dot color for all other slides */
   dotColor: PropTypes.string,
+  /** Retain zoom with one finger */
+  retain: PropTypes.bool,
 }
 
 Slider.defaultProps = {
@@ -105,4 +108,5 @@ Slider.defaultProps = {
   slideIndicatorTimeout: defaultProps.slideIndicatorTimeout,
   activeDotColor: defaultProps.activeDotColor,
   dotColor: defaultProps.dotColor,
+  retain: undefined,
 }

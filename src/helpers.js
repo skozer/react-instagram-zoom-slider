@@ -19,8 +19,12 @@ export function getMiddleOfLine(point1, point2) {
   }
 }
 
-export function getMiddleTouchOnElement(touches, boundingRect) {
-  const middleTouch = getMiddleOfLine(touches[0], touches[1])
+function getSinglePoint(point, lastTouch) {
+  return { clientX: point.clientX - (lastTouch.clientX / 2), clientY: point.clientY - (lastTouch.clientY / 2) }
+}
+
+export function getMiddleTouchOnElement(touches, boundingRect, lastTouch) {
+  const middleTouch = touches.length === 2 ? getMiddleOfLine(touches[0], touches[1]) : getSinglePoint(touches[0], lastTouch)
 
   return {
     clientX: middleTouch.clientX - boundingRect.left,
