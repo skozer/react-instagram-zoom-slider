@@ -68,7 +68,7 @@
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-postcss": "^2.0.6",
-    "semantic-release": "^17.0.4",
+    "semantic-release": "^19.0.3",
     "styled-components": "^5.0.1"
   },
   "files": [
